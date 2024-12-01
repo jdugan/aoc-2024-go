@@ -1,9 +1,9 @@
 package main
 
 import (
-	"aoc/2024/pkg/day01"
+	"aoc/2024/pkg/day02"
 )
 
 func main() {
-	day01.Both()
+	day02.Both()
 }
