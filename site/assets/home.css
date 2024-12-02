@@ -2,12 +2,28 @@
     color: #ffff66;
     text-shadow: 0 0 5px #ffff66;
 }
-.calendar .calendar-color-8n {
-    color: #886655;
-}
 .calendar .calendar-color-w {
     color: #ccc;
 }
+.calendar .calendar-color-8n {
+    color: #886655;
+}
+.calendar .calendar-color-3g {
+    color: #00cc00;
+}
 .calendar .calendar-color-3s {
     color: #e3b585;
+}
+.calendar .calendar-color-3y {
+    color: #ffff66;
+    text-shadow:
+        0 0 5px #ffff66,
+        0 0 10px #ffff66;
+}
+.calendar .calendar-color-6o {
+    color: #ff9900;
+    text-shadow: 0 0 5px #ff9900;
+}
+.calendar .calendar-color-6b {
+    color: #009900;
 }

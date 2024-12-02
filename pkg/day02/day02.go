@@ -2,8 +2,8 @@ package day02
 
 import (
 	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
+	"strconv"
+	"strings"
 
 	"aoc/2024/pkg/reader"
 )
@@ -19,17 +19,40 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	reports := data()
+	count := 0
+	for _, report := range reports {
+		if report.IsSafe() {
+			count += 1
+		}
+	}
+	return count
 }
 
 func Puzzle2() int {
-	return -2
+	reports := data()
+	count := 0
+	for _, report := range reports {
+		if report.IsSafe() || report.IsSortaSafe() {
+			count += 1
+		}
+	}
+	return count
 }
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() []Report {
 	lines := reader.Lines("./data/day02/input.txt")
-
-	return lines
+	reports := make([]Report, 0)
+	for _, line := range lines {
+		strs := strings.Split(line, " ")
+		vals := make([]int, 0)
+		for _, str := range strs {
+			val, _ := strconv.Atoi(str)
+			vals = append(vals, val)
+		}
+		reports = append(reports, Report{values: vals})
+	}
+	return reports
 }
