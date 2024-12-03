@@ -1,11 +1,9 @@
 package day03
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
+	"strings"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,17 +17,19 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	scanner := Scanner{program: data()}
+	return scanner.SimpleParse()
 }
 
 func Puzzle2() int {
-	return -2
+	scanner := Scanner{program: data()}
+	return scanner.ComplexParse()
 }
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() string {
 	lines := reader.Lines("./data/day03/input.txt")
 
-	return lines
+	return strings.Join(lines[:], "")
 }
