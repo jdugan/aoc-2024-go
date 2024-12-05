@@ -1,51 +1,3 @@
-.calendar .calendar-color-8w {
-    color: #cccccc;
-}
-.calendar .calendar-color-2u {
-    color: #5eabb4;
-}
-.calendar .calendar-color-6b {
-    color: #009900;
-}
-.calendar .calendar-color-8e {
-    color: #cccccc;
-}
-.calendar .calendar-color-6y {
-    color: #ffff66;
-    text-shadow: 0 0 5px #ffff66;
-}
-.calendar .calendar-color-w {
-    color: #ccc;
-}
-.calendar .calendar-color-3b {
-    color: #5555bb;
-}
-.calendar .calendar-color-6r {
-    color: #ff0000;
-    text-shadow: 0 0 5px #ff0000;
-}
-.calendar .calendar-color-3g {
-    color: #00cc00;
-}
-.calendar .calendar-color-6o {
-    color: #ff9900;
-    text-shadow: 0 0 5px #ff9900;
-}
-.calendar .calendar-color-2g1 {
-    color: #4d8b03;
-}
-.calendar .calendar-color-3y {
-    color: #ffff66;
-    text-shadow:
-        0 0 5px #ffff66,
-        0 0 10px #ffff66;
-}
-.calendar .calendar-color-2g2 {
-    color: #7fbd39;
-}
-.calendar .calendar-color-3s {
-    color: #e3b585;
-}
 .calendar .calendar-color-8i {
     color: #ff0000;
     text-shadow:
@@ -53,10 +5,64 @@
         0 0 10px #ff0000,
         0 0 15px #ff0000;
 }
-.calendar .calendar-color-8n {
-    color: #886655;
+.calendar .calendar-color-6r {
+    color: #ff0000;
+    text-shadow: 0 0 5px #ff0000;
+}
+.calendar .calendar-color-2g1 {
+    color: #4d8b03;
+}
+.calendar .calendar-color-3s {
+    color: #e3b585;
+}
+.calendar .calendar-color-8e {
+    color: #cccccc;
+}
+.calendar .calendar-color-w {
+    color: #ccc;
+}
+.calendar .calendar-color-3y {
+    color: #ffff66;
+    text-shadow:
+        0 0 5px #ffff66,
+        0 0 10px #ffff66;
+}
+.calendar .calendar-color-3b {
+    color: #5555bb;
 }
 .calendar .calendar-color-6u {
     color: #0066ff;
     text-shadow: 0 0 5px #0066ff;
+}
+.calendar .calendar-color-2u {
+    color: #5eabb4;
+}
+.calendar .calendar-color-2g0 {
+    color: #488813;
+}
+.calendar .calendar-color-8n {
+    color: #886655;
+}
+.calendar .calendar-color-6t {
+    color: #aaaaaa;
+}
+.calendar .calendar-color-3g {
+    color: #00cc00;
+}
+.calendar .calendar-color-8w {
+    color: #cccccc;
+}
+.calendar .calendar-color-6b {
+    color: #009900;
+}
+.calendar .calendar-color-6o {
+    color: #ff9900;
+    text-shadow: 0 0 5px #ff9900;
+}
+.calendar .calendar-color-2g2 {
+    color: #7fbd39;
+}
+.calendar .calendar-color-6y {
+    color: #ffff66;
+    text-shadow: 0 0 5px #ffff66;
 }
