@@ -1,11 +1,11 @@
 package day07
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
+	"strings"
+
+	"github.com/elliotchance/pie/v2"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,17 +19,41 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	equations := data()
+	operands := []string{"+", "*"}
+	sum := 0
+	for _, e := range equations {
+		solutions := e.FindSolutions(operands)
+		if len(solutions) > 0 {
+			sum += e.result
+		}
+	}
+	return sum
 }
 
 func Puzzle2() int {
-	return -2
+	equations := data()
+	operands := []string{"+", "*", "||"}
+	sum := 0
+	for _, e := range equations {
+		solutions := e.FindSolutions(operands)
+		if len(solutions) > 0 {
+			sum += e.result
+		}
+	}
+	return sum
 }
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() []Equation {
 	lines := reader.Lines("./data/day07/input.txt")
-
-	return lines
+	equations := make([]Equation, 0)
+	for _, line := range lines {
+		strs := strings.Split(strings.Replace(line, ":", "", 1), " ")
+		ints := pie.Ints(strs)
+		result, factors := pie.Shift(ints)
+		equations = append(equations, Equation{result: result, factors: factors})
+	}
+	return equations
 }
