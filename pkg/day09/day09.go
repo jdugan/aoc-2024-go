@@ -1,11 +1,11 @@
 package day09
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
+	"strings"
+
+	"github.com/elliotchance/pie/v2"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,7 +19,8 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	fs := data()
+	return fs.Compress()
 }
 
 func Puzzle2() int {
@@ -28,8 +29,16 @@ func Puzzle2() int {
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() FileSystem {
 	lines := reader.Lines("./data/day09/input.txt")
+	line := lines[0] + "0"
+	ints := pie.Ints(strings.Split(line, ""))
+	chunks := pie.Chunk(ints, 2)
 
-	return lines
+	files := make([]File, 0)
+	for id, chunk := range chunks {
+		file := File{id: id, blocks: chunk[0], space: chunk[1]}
+		files = append(files, file)
+	}
+	return FileSystem{files: files}
 }
