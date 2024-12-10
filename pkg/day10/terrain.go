@@ -1,8 +1,6 @@
 package day10
 
 import (
-	"strings"
-
 	"github.com/elliotchance/pie/v2"
 )
 
@@ -13,6 +11,30 @@ type Terrain struct {
 }
 
 // ========== RECEIVERS ===================================
+
+func (t Terrain) GetTrailSystemRating() int {
+	tmap := t.GetTrailSystem()
+	sum := 0
+	for _, trails := range tmap {
+		sum += len(trails)
+	}
+	return sum
+}
+
+func (t Terrain) GetTrailSystemScore() int {
+	tmap := t.GetTrailSystem()
+	sum := 0
+	for _, trails := range tmap {
+		dests := make([]string, 0)
+		for _, trail := range trails {
+			dests = append(dests, pie.Last(trail))
+		}
+		sum += len(pie.Unique(dests))
+	}
+	return sum
+}
+
+// ---------- HELPERS -------------------------------------
 
 func (t Terrain) AdjacentPoints(p Point) []Point {
 	aps := make([]Point, 0)
@@ -35,21 +57,22 @@ func (t Terrain) GetTrailHeads() []Point {
 	return theads
 }
 
-func (t Terrain) GetTrailSystem() map[string][][]Point {
-	tmap := make(map[string][][]Point)
+func (t Terrain) GetTrailSystem() map[string][][]string {
+	tmap := make(map[string][][]string)
 	for _, thead := range t.GetTrailHeads() {
-		trails := make([][]Point, 0)
-		possibles := [][]Point{[]Point{thead}}
+		trails := make([][]string, 0)
+		possibles := [][]string{[]string{thead.Id()}}
 		for len(possibles) > 0 {
-			new_possibles := make([][]Point, 0)
+			new_possibles := make([][]string, 0)
 			for _, possible := range possibles {
-				bp := pie.Last(possible)
+				bpid := pie.Last(possible)
+				bp, _ := t.points[bpid]
 				aps := t.AdjacentPoints(bp)
 				for _, ap := range aps {
 					if ap.value == bp.value+1 {
-						cp := make([]Point, len(possible))
+						cp := make([]string, len(possible))
 						copy(cp, possible)
-						cp = append(cp, ap)
+						cp = append(cp, ap.Id())
 						if ap.value == 9 {
 							trails = append(trails, cp)
 						} else {
@@ -66,48 +89,6 @@ func (t Terrain) GetTrailSystem() map[string][][]Point {
 	return tmap
 }
 
-func (t Terrain) GetTrailHeadRatings() map[string]int {
-	smap := make(map[string]int)
-	tmap := t.GetTrailSystem()
-	for id, trails := range tmap {
-		tids := make([]string, 0)
-		for _, trail := range trails {
-			ids := make([]string, 0)
-			for _, p := range trail {
-				ids = append(ids, p.Id())
-			}
-			tids = append(tids, strings.Join(ids, "|"))
-		}
-		smap[id] = len(pie.Unique(tids))
-	}
-	return smap
-}
-
-func (t Terrain) GetTrailSystemRating() int {
-	smap := t.GetTrailHeadRatings()
-	return pie.Sum(pie.Values(smap))
-}
-
-func (t Terrain) GetTrailHeadScores() map[string]int {
-	smap := make(map[string]int)
-	tmap := t.GetTrailSystem()
-	for id, trails := range tmap {
-		dests := make([]string, 0)
-		for _, trail := range trails {
-			dests = append(dests, pie.Last(trail).Id())
-		}
-		smap[id] = len(pie.Unique(dests))
-	}
-	return smap
-}
-
-func (t Terrain) GetTrailSystemScore() int {
-	smap := t.GetTrailHeadScores()
-	return pie.Sum(pie.Values(smap))
-}
-
 func (t *Terrain) UpdatePoint(p Point) {
 	t.points[p.Id()] = p
 }
-
-// ---------- UTILITIES -----------------------------------
