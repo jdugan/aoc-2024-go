@@ -77,8 +77,8 @@ func Test(t *testing.T) {
 			g.Assert(day10.Puzzle2()).Equal(1324)
 		})
 		g.It("Should get correct answers for Day 11", func() {
-			g.Assert(day11.Puzzle1()).Equal(-1)
-			g.Assert(day11.Puzzle2()).Equal(-2)
+			g.Assert(day11.Puzzle1()).Equal(194482)
+			g.Assert(day11.Puzzle2()).Equal(232454623677743)
 		})
 		g.It("Should get correct answers for Day 12", func() {
 			g.Assert(day12.Puzzle1()).Equal(-1)
