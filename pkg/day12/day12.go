@@ -1,11 +1,8 @@
 package day12
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,7 +16,9 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	garden := data()
+	garden.Divide()
+	return garden.FencingCost()
 }
 
 func Puzzle2() int {
@@ -28,8 +27,15 @@ func Puzzle2() int {
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
-	lines := reader.Lines("./data/day12/input.txt")
-
-	return lines
+func data() Garden {
+	lines := reader.Lines("./data/day12/input-test1.txt")
+	dims := []int{len(lines[0]), len(lines)}
+	points := make(map[string]Point)
+	for y, row := range lines {
+		for x, col := range row {
+			p := Point{x: x, y: y, value: string(col)}
+			points[p.Id()] = p
+		}
+	}
+	return Garden{dims: dims, points: points}
 }
