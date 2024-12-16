@@ -18,8 +18,11 @@ func Both() {
 	fmt.Println(" ")
 }
 
+// 123417 - too low
 func Puzzle1() int {
-	return -1
+	maze := data()
+	_, cost := maze.FindShortestPath()
+	return cost
 }
 
 func Puzzle2() int {
@@ -28,8 +31,18 @@ func Puzzle2() int {
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() Maze {
 	lines := reader.Lines("./data/day16/input.txt")
+	points := make(map[string]Point)
 
-	return lines
+	for y, line := range lines {
+		for x, col := range line {
+			if string(col) != "#" {
+				p := Point{x: x, y: y, value: string(col)}
+				points[p.Id()] = p
+			}
+		}
+	}
+
+	return Maze{points: points}
 }

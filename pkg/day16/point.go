@@ -1,4 +1,4 @@
-package day15
+package day16
 
 import "aoc/2024/pkg/utility"
 
@@ -12,9 +12,18 @@ type Point struct {
 
 // ========== RECEIVERS ===================================
 
-// ids
+// identity
 func (p Point) Id() string {
 	return utility.CoordToId(p.x, p.y)
+}
+
+// neighbors
+func (p Point) AdjacentIds() []string {
+	e := p.EastId()
+	n := p.NorthId()
+	s := p.SouthId()
+	w := p.WestId()
+	return []string{e, n, s, w}
 }
 
 func (p Point) EastId() string {
@@ -33,28 +42,11 @@ func (p Point) WestId() string {
 	return utility.CoordToId(p.x-1, p.y)
 }
 
-// scores
-func (p Point) GpsScore() int {
-	score := 0
-	if p.IsBox() {
-		score += (100 * p.y) + p.x
-	}
-	return score
+// state
+func (p Point) IsOrigin() bool {
+	return p.value == "S"
 }
 
-// types
-func (p Point) IsBox() bool {
-	return p.value == "O" || p.value == "["
-}
-
-func (p Point) IsOpen() bool {
-	return p.value == "."
-}
-
-func (p Point) IsRobot() bool {
-	return p.value == "@"
-}
-
-func (p Point) IsWall() bool {
-	return p.value == "#"
+func (p Point) IsTerminus() bool {
+	return p.value == "E"
 }
