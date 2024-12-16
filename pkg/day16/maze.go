@@ -24,9 +24,9 @@ func (m Maze) FindShortestPath() ([]string, int) {
 	for pid, p := range m.points {
 		amap := m.AdjacentMap(p)
 		for _, pdir := range dirs {
-			fnode := pid + "," + pdir
+			fnode := pid + ";" + pdir
 			for adir, ap := range amap {
-				tnode := ap.Id() + "," + adir
+				tnode := ap.Id() + ";" + adir
 				cost := 1
 				if pdir != adir {
 					cost = 1001
@@ -43,9 +43,9 @@ func (m Maze) FindShortestPath() ([]string, int) {
 
 	best_path := make([]string, 0)
 	best_cost := 999999999999999
-	oid := origin + ",E"
+	oid := origin + ";E"
 	for _, dir := range dirs {
-		tid := terminus + "," + dir
+		tid := terminus + ";" + dir
 		path, cost, _ := g.Path(oid, tid)
 		if cost > 0 && cost < best_cost {
 			best_path = path
