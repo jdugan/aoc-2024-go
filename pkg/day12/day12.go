@@ -21,8 +21,6 @@ func Puzzle1() int {
 	return garden.RegularCost()
 }
 
-// 233672 - too low
-// 901550 - too high
 func Puzzle2() int {
 	garden := data()
 	garden.Divide()

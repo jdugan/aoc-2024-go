@@ -51,14 +51,11 @@ func (wh Warehouse) GpsScore() int {
 }
 
 func (wh *Warehouse) PerformMoves() {
-	ticks := 0
 	robot := wh.GetRobot()
 	for _, move := range wh.moves {
-		ticks += 1
 		oid := robot.Id()
 		dx, dy := wh.ForwardOffsets(move)
 		fps := wh.ForwardPoints(robot, move)
-		// fmt.Println(ticks, move, fps)
 		if len(fps) > 0 {
 			for _, fp := range fps {
 				fp.x += dx
@@ -90,11 +87,7 @@ func (wh *Warehouse) PerformMoves() {
 					}
 				}
 			}
-			// if ticks > 1000 {
-			// 	break
-			// }
 		}
-		// wh.Print()
 	}
 }
 

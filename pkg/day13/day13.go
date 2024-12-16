@@ -28,7 +28,6 @@ func Puzzle1() int {
 	return sum
 }
 
-// 91161108862801 - too high
 func Puzzle2() int {
 	machines := data(10000000000000)
 	sum := 0
