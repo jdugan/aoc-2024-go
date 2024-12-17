@@ -2,7 +2,7 @@ package day17
 
 // ========== DEFINITION ==================================
 
-type Thing struct{}
+type Computer struct{}
 
 // ========== RECEIVERS ===================================
 
