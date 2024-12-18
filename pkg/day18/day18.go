@@ -19,21 +19,20 @@ func Both() {
 
 func Puzzle1() int {
 	grid, drops := data()
-	grid.DropFirst(drops)
-	dist := grid.FindShortestPath()
+	dist := grid.FindDebugDistance(drops)
 	return dist
 }
 
 func Puzzle2() string {
-	grid, _ := data()
-	byte := grid.FindTerminalByte()
+	grid, drops := data()
+	byte := grid.FindTerminalByte(drops)
 	return byte
 }
 
 // ========== PRIVATE FNS =================================
 
 func data() (Grid, int) {
-	lines := reader.Lines("./data/day18/input-test.txt")
+	lines := reader.Lines("./data/day18/input.txt")
 	max, _ := strconv.Atoi(lines[0])
 	drops, _ := strconv.Atoi(lines[1])
 	bytes := lines[3:]

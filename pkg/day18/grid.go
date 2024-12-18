@@ -19,14 +19,38 @@ type Grid struct {
 
 func (g *Grid) DropFirst(size int) {
 	for _, id := range g.bytes[:size] {
-		p := g.points[id]
-		p.value = "#"
-		g.points[id] = p
+		g.Drop(id)
 	}
+}
+func (g Grid) FindDebugDistance(drops int) int {
+	g.DropFirst(drops)
+	dist := g.FindShortestPath()
+	return dist
+}
+
+func (g Grid) FindTerminalByte(drops int) string {
+	terminal := "0,0"
+	g.DropFirst(drops)
+	for _, byte := range g.bytes[drops:] {
+		g.Drop(byte)
+		dist := g.FindShortestPath()
+		if dist == 0 {
+			terminal = byte
+			break
+		}
+	}
+	return terminal
+}
+
+// ---------- UTILITIES -----------------------------------
+
+func (g *Grid) Drop(idx string) {
+	p := g.points[idx]
+	p.value = "#"
+	g.points[idx] = p
 }
 
 func (g Grid) FindShortestPath() int {
-
 	// add nodes and map ids to indices
 	graph := dijkstra.NewGraph()
 	vmap := make(map[string]int)
@@ -57,12 +81,6 @@ func (g Grid) FindShortestPath() int {
 
 	return dist
 }
-
-func (g Grid) FindTerminalByte() string {
-	return "0,0"
-}
-
-// ---------- UTILITIES -----------------------------------
 
 func (g Grid) OriginId() string {
 	return utility.CoordToId(0, 0)
