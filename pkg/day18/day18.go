@@ -1,11 +1,10 @@
 package day18
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"aoc/2024/pkg/utility"
+	"fmt"
+	"strconv"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,17 +18,33 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	grid, drops := data()
+	grid.DropFirst(drops)
+	dist := grid.FindShortestPath()
+	return dist
 }
 
-func Puzzle2() int {
-	return -2
+func Puzzle2() string {
+	grid, _ := data()
+	byte := grid.FindTerminalByte()
+	return byte
 }
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
-	lines := reader.Lines("./data/day18/input.txt")
+func data() (Grid, int) {
+	lines := reader.Lines("./data/day18/input-test.txt")
+	max, _ := strconv.Atoi(lines[0])
+	drops, _ := strconv.Atoi(lines[1])
+	bytes := lines[3:]
+	points := make(map[string]Point)
 
-	return lines
+	for y := 0; y <= max; y++ {
+		for x := 0; x <= max; x++ {
+			id := utility.CoordToId(x, y)
+			points[id] = Point{x: x, y: y, value: "."}
+		}
+	}
+
+	return Grid{max: max, points: points, bytes: bytes}, drops
 }
