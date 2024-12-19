@@ -1,11 +1,9 @@
 package day19
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
+	"strings"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,7 +17,16 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	towels, designs := data()
+	sum := 0
+	for i, design := range designs {
+		fmt.Println(i)
+		seq := design.FindSequences(towels)
+		if len(seq) > 0 {
+			sum += 1
+		}
+	}
+	return sum
 }
 
 func Puzzle2() int {
@@ -28,8 +35,12 @@ func Puzzle2() int {
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() ([]string, []Design) {
 	lines := reader.Lines("./data/day19/input.txt")
-
-	return lines
+	towels := strings.Split(lines[0], ", ")
+	designs := make([]Design, 0)
+	for _, pattern := range lines[2:] {
+		designs = append(designs, Design{pattern: pattern})
+	}
+	return towels, designs
 }
