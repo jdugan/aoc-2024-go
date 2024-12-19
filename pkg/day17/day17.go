@@ -27,18 +27,18 @@ func Puzzle1() string {
 	return result
 }
 
-// 185449480 - too low
 func Puzzle2() int {
-	memory, program := data()
-	computer := Computer{memory: memory}
-	result := computer.Search(program)
-	return result
+	// memory, program := data()
+	// computer := Computer{memory: memory}
+	// result := computer.Search(program)
+	// return result
+	return -2
 }
 
 // ========== PRIVATE FNS =================================
 
 func data() (map[string]int, []int) {
-	lines := reader.Lines("./data/day17/input-test2.txt")
+	lines := reader.Lines("./data/day17/input.txt")
 
 	// parse registers
 	re1 := regexp.MustCompile("^Register ([A-Z]): ([0-9]+)$")
