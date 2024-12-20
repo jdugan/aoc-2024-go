@@ -3,6 +3,7 @@ package day20
 import (
 	"aoc/2024/pkg/utility"
 	"fmt"
+	"slices"
 
 	"github.com/RyanCarrier/dijkstra/v2"
 	"github.com/elliotchance/pie/v2"
@@ -17,17 +18,19 @@ type Maze struct {
 
 // ========== RECEIVERS ===================================
 
-func (m Maze) ShortcutCount() int {
-	count := 0
-	for _, sc := range m.FindShortcuts() {
-		if sc.distance >= m.minimum {
-			count += 1
-		}
-	}
-	return count
+func (m Maze) ShortcutCount(cheat_dist int, min_saving int) int {
+	shortcuts := m.FindShortcuts(cheat_dist, min_saving)
+	return len(shortcuts)
 }
 
-func (m Maze) FindShortcuts() []Shortcut {
+func (m Maze) FindShortcuts(cheat_dist int, min_saving int) []Shortcut {
+	cheats := make([]int, 0)
+	for c := cheat_dist; c > 0; c-- {
+		if c%2 == 0 {
+			cheats = append(cheats, c)
+		}
+	}
+	fmt.Println(cheats)
 	shortcuts := make([]Shortcut, 0)
 	path, _ := m.ShortestPath()
 	head, tail := pie.Shift(path)
@@ -35,9 +38,13 @@ func (m Maze) FindShortcuts() []Shortcut {
 		hp := m.points[head]
 		for idx, tid := range tail {
 			tp := m.points[tid]
-			if idx > 1 && hp.DistanceTo(tp) == 2 {
-				sc := Shortcut{p1: hp, p2: tp, distance: idx - 1}
-				shortcuts = append(shortcuts, sc)
+			dist := hp.DistanceTo(tp)
+			if idx > 1 && slices.Contains(cheats, dist) {
+				steps := idx - dist + 1
+				if steps >= min_saving {
+					id := hp.Id() + ";" + tp.Id()
+					shortcuts = append(shortcuts, Shortcut{id: id, steps: steps})
+				}
 			}
 		}
 		head, tail = pie.Shift(tail)
@@ -52,7 +59,7 @@ func (m Maze) ShortestPath() ([]string, int) {
 	g := dijkstra.NewGraph()
 	vmap := make(map[string]int)
 	ivmap := make(map[int]string)
-	for pid, _ := range m.points {
+	for pid := range m.points {
 		idx := g.AddNewEmptyVertex()
 		vmap[pid] = idx
 		ivmap[idx] = pid

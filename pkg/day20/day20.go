@@ -3,8 +3,8 @@ package day20
 import (
 	"aoc/2024/pkg/reader"
 	"fmt"
+	"sort"
 	"strconv"
-	"strings"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -17,25 +17,28 @@ func Both() {
 	fmt.Println(" ")
 }
 
-// 6949 - too high
 func Puzzle1() int {
 	maze := data()
-	return maze.ShortcutCount()
+	shortcuts := maze.FindShortcuts(2, 2)
+	print(shortcuts)
+	return len(shortcuts)
 }
 
+// 1043543 - too high
+// 554470 - too low
 func Puzzle2() int {
-	return -2
+	maze := data()
+	shortcuts := maze.FindShortcuts(20, 50)
+	print(shortcuts)
+	return len(shortcuts)
 }
 
 // ========== PRIVATE FNS =================================
 
 func data() Maze {
-	lines := reader.Lines("./data/day20/input.txt")
-	smin := strings.Replace(lines[0], "Minimum: ", "", 1)
-	min, _ := strconv.Atoi(smin)
-
+	lines := reader.Lines("./data/day20/input-test.txt")
 	points := make(map[string]Point)
-	for y, line := range lines[2:] {
+	for y, line := range lines {
 		for x, col := range line {
 			if string(col) != "#" {
 				p := Point{x: x, y: y, value: string(col)}
@@ -44,5 +47,28 @@ func data() Maze {
 		}
 	}
 
-	return Maze{points: points, minimum: min}
+	return Maze{points: points}
+}
+
+func print(shortcuts []Shortcut) {
+	dmap := make(map[int]int)
+	for _, sc := range shortcuts {
+		_, ok := dmap[sc.steps]
+		if !ok {
+			dmap[sc.steps] = 0
+		}
+		dmap[sc.steps] += 1
+	}
+	nums := make([]int, 0)
+	for dist, count := range dmap {
+		nums = append(nums, dist*1000000+count)
+	}
+	sort.Ints(nums)
+	for _, num := range nums {
+		dist := num / 1000000
+		count := num % 1000000
+		sdist := strconv.Itoa(dist)
+		scount := strconv.Itoa(count)
+		fmt.Println("There are " + scount + " cheats that save " + sdist + " picoseconds.")
+	}
 }
