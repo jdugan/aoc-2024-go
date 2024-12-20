@@ -3,6 +3,8 @@ package day20
 import (
 	"aoc/2024/pkg/reader"
 	"fmt"
+	"strconv"
+	"strings"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -18,7 +20,7 @@ func Both() {
 // 6949 - too high
 func Puzzle1() int {
 	maze := data()
-	return maze.ShortcutCount(100)
+	return maze.ShortcutCount()
 }
 
 func Puzzle2() int {
@@ -29,9 +31,11 @@ func Puzzle2() int {
 
 func data() Maze {
 	lines := reader.Lines("./data/day20/input.txt")
-	points := make(map[string]Point)
+	smin := strings.Replace(lines[0], "Minimum: ", "", 1)
+	min, _ := strconv.Atoi(smin)
 
-	for y, line := range lines {
+	points := make(map[string]Point)
+	for y, line := range lines[2:] {
 		for x, col := range line {
 			if string(col) != "#" {
 				p := Point{x: x, y: y, value: string(col)}
@@ -40,5 +44,5 @@ func data() Maze {
 		}
 	}
 
-	return Maze{points: points}
+	return Maze{points: points, minimum: min}
 }

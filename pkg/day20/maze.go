@@ -11,16 +11,16 @@ import (
 // ========== DEFINITION ==================================
 
 type Maze struct {
-	points map[string]Point
+	minimum int
+	points  map[string]Point
 }
 
 // ========== RECEIVERS ===================================
 
-func (m Maze) ShortcutCount(minimum int) int {
-	shortcuts := m.FindShortcuts()
+func (m Maze) ShortcutCount() int {
 	count := 0
-	for _, sc := range shortcuts {
-		if sc.distance >= minimum {
+	for _, sc := range m.FindShortcuts() {
+		if sc.distance >= m.minimum {
 			count += 1
 		}
 	}
