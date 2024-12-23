@@ -1,7 +1,6 @@
 package day17
 
 import (
-	"fmt"
 	"math"
 	"strings"
 
@@ -18,14 +17,7 @@ type Computer struct {
 
 // ========== RECEIVERS ===================================
 
-func (c *Computer) Run(program []int) string {
-	c.RunWithTarget(program, make([]int, 0))
-	return c.Result()
-}
-
-func (c *Computer) RunWithTarget(program []int, target []int) string {
-	seed := c.memory["A"]
-loop:
+func (c *Computer) Run(program []int) {
 	for c.pointer < len(program) {
 		opscode := program[c.pointer]
 		operand := program[c.pointer+1]
@@ -56,18 +48,6 @@ loop:
 		case 5:
 			combo, _ := c.ComboValue(operand)
 			c.output = append(c.output, combo%8)
-			if len(target) > 0 {
-				olen := len(c.output)
-				ostr := c.Result()
-				tstr := strings.Join(pie.Strings(target[:olen]), ",")
-				if ostr != tstr {
-					break loop
-				} else {
-					if len(c.output) >= 10 {
-						fmt.Println(seed, c.output)
-					}
-				}
-			}
 		// bdv
 		case 6:
 			combo, _ := c.ComboValue(operand)
@@ -80,36 +60,30 @@ loop:
 			c.memory["C"] = c.memory["A"] / denom
 		}
 	}
-	return c.Result()
 }
 
-//	1 - 6
-//	2 - 14
-//	3 - 332
-//	4 - 31157
-//	5 - 1079733
-//	6 - 2977469
-//	7 - 7171773
-//	8 - 23948989
-//	9 - 23948989
-//
-// 10 -
-// 11 -
-// 12 -
-// 13 -
-// 14 -
-// 15 -
-// 16 -
 func (c *Computer) Search(program []int) int {
-	target := strings.Join(pie.Strings(program), ",")
-	result := ""
-	n := 0
-	for result != target {
-		n += 1
-		c.Reset(n)
-		result = c.RunWithTarget(program, program)
+	idx := len(program) - 1
+	seed := int(math.Pow(8, float64(idx)))
+	c.Reset(seed)
+	c.Run(program)
+	for {
+		power := pie.Max([]int{0, idx - 1})
+		seed += int(math.Pow(8, float64(power)))
+		c.Reset(seed)
+		c.Run(program)
+		omatch := strings.Join(pie.Strings(c.output[idx:]), ",")
+		tmatch := strings.Join(pie.Strings(program[idx:]), ",")
+		if omatch == tmatch {
+			if idx == 0 {
+				break
+			} else {
+				idx -= 1
+			}
+		}
 	}
-	return n
+
+	return seed
 }
 
 // ---------- UTILITIES -----------------------------------
@@ -129,8 +103,8 @@ func (c Computer) ComboValue(operand int) (int, bool) {
 	}
 }
 
-func (c *Computer) Reset(seed int) {
-	c.memory["A"] = seed
+func (c *Computer) Reset(a int) {
+	c.memory["A"] = a
 	c.memory["B"] = 0
 	c.memory["C"] = 0
 	c.pointer = 0

@@ -21,23 +21,20 @@ func Both() {
 }
 
 func Puzzle1() string {
-	memory, program := data()
-	computer := Computer{memory: memory}
-	result := computer.Run(program)
-	return result
+	computer, program := data()
+	computer.Run(program)
+	return computer.Result()
 }
 
+// 164279033360034 - too high
 func Puzzle2() int {
-	// memory, program := data()
-	// computer := Computer{memory: memory}
-	// result := computer.Search(program)
-	// return result
-	return -2
+	computer, program := data()
+	return computer.Search(program)
 }
 
 // ========== PRIVATE FNS =================================
 
-func data() (map[string]int, []int) {
+func data() (Computer, []int) {
 	lines := reader.Lines("./data/day17/input.txt")
 
 	// parse registers
@@ -58,5 +55,5 @@ func data() (map[string]int, []int) {
 	strs := strings.Split(match[1], ",")
 	program := pie.Ints(strs)
 
-	return memory, program
+	return Computer{memory: memory}, program
 }
