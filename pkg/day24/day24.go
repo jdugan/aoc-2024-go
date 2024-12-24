@@ -1,11 +1,11 @@
 package day24
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
+	"regexp"
+	"strconv"
+	"strings"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -19,7 +19,9 @@ func Both() {
 }
 
 func Puzzle1() int {
-	return -1
+	device := data()
+	device.CompleteCircuit()
+	return device.Checksum()
 }
 
 func Puzzle2() int {
@@ -28,8 +30,25 @@ func Puzzle2() int {
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
-	lines := reader.Lines("./data/day24/input.txt")
+func data() Device {
+	wires := make(map[string]int)
+	gates := make([]Gate, 0)
 
-	return lines
+	lines := reader.Lines("./data/day24/input.txt")
+	for _, line := range lines {
+		if strings.Index(line, ":") >= 0 {
+			parts := strings.Split(line, ": ")
+			id := parts[0]
+			val, _ := strconv.Atoi(parts[1])
+			wires[id] = val
+		}
+		if strings.Index(line, "->") >= 0 {
+			re := regexp.MustCompile("^(\\S+) (\\S+) (\\S+) -> (\\S+)$")
+			m := re.FindAllStringSubmatch(line, 1)[0]
+			gate := Gate{inputs: []string{m[1], m[3]}, condition: m[2], output: m[4]}
+			gates = append(gates, gate)
+		}
+	}
+
+	return Device{wires: wires, gates: gates}
 }
