@@ -11,74 +11,73 @@ import (
 // ========== DEFINITION ==================================
 
 type Maze struct {
-	points map[string]Point
+	points        map[string]Point
+	best_distance int
+	best_path     []string
 }
 
 // ========== RECEIVERS ===================================
 
-func (m Maze) ShortcutCount(minimum int) int {
-	shortcuts := m.FindShortcuts()
-	count := 0
-	for _, sc := range shortcuts {
-		if sc.distance >= minimum {
-			count += 1
-		}
-	}
-	return count
+func (m Maze) ShortcutCount(cheats int, saving int) int {
+	shortcuts := m.FindShortcuts(cheats, saving)
+	return len(shortcuts)
 }
 
-func (m Maze) FindShortcuts() []Shortcut {
-	shortcuts := make([]Shortcut, 0)
-	path, _ := m.ShortestPath()
-	head, tail := pie.Shift(path)
+func (m Maze) FindShortcuts(cheat int, saving int) []string {
+	shortcuts := make([]string, 0)
+	head, tail := pie.Shift(m.best_path)
+	hidx := 0
 	for len(head) > 0 {
 		hp := m.points[head]
-		for idx, tid := range tail {
+		for tidx, tid := range tail {
 			tp := m.points[tid]
-			if idx > 1 && hp.DistanceTo(tp) == 2 {
-				sc := Shortcut{p1: hp, p2: tp, distance: idx - 1}
-				shortcuts = append(shortcuts, sc)
+			dist := hp.DistanceTo(tp)
+			if dist >= 2 && dist <= cheat {
+				total := hidx + dist + len(tail) - tidx - 1
+				delta := m.best_distance - total
+				if delta >= saving {
+					// sc := Shortcut{p1: hp, p2: tp, delta: delta}
+					sc := hp.Id() + ";" + tp.Id()
+					shortcuts = append(shortcuts, sc)
+				}
 			}
 		}
 		head, tail = pie.Shift(tail)
+		hidx += 1
 	}
 	return shortcuts
 }
 
 // ---------- UTILITIES -----------------------------------
 
-func (m Maze) ShortestPath() ([]string, int) {
-	// add nodes and map ids to indices
-	g := dijkstra.NewGraph()
+func (m *Maze) Initialize() {
+	graph := dijkstra.NewGraph()
 	vmap := make(map[string]int)
 	ivmap := make(map[int]string)
-	for pid, _ := range m.points {
-		idx := g.AddNewEmptyVertex()
+	for pid := range m.points {
+		idx := graph.AddNewEmptyVertex()
 		vmap[pid] = idx
 		ivmap[idx] = pid
 	}
-	// add edges
 	for pid, p := range m.points {
 		fnode := vmap[pid]
 		for _, aid := range p.AdjacentIds() {
 			_, ok := m.points[aid]
 			if ok {
 				tnode := vmap[aid]
-				g.AddArc(fnode, tnode, uint64(1))
+				graph.AddArc(fnode, tnode, uint64(1))
 			}
 		}
 	}
-	// locate path
 	onode := vmap[m.OriginId()]
 	tnode := vmap[m.TerminusId()]
-	best, _ := g.Shortest(onode, tnode)
+	best, _ := graph.Shortest(onode, tnode)
 	path := make([]string, 0)
 	for _, idx := range best.Path {
 		path = append(path, ivmap[idx])
 	}
-	distance := int(best.Distance)
-
-	return path, distance
+	m.best_path = path
+	m.best_distance = int(best.Distance)
 }
 
 func (m Maze) OriginId() string {
