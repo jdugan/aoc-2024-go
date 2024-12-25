@@ -1,11 +1,8 @@
 package day20
 
 import (
-	"fmt"
-
-	// "github.com/elliotchance/pie/v2"
-
 	"aoc/2024/pkg/reader"
+	"fmt"
 )
 
 // ========== PUBLIC FNS ==================================
@@ -18,8 +15,10 @@ func Both() {
 	fmt.Println(" ")
 }
 
+// 6949 - too high
 func Puzzle1() int {
-	return -1
+	maze := data()
+	return maze.ShortcutCount(100)
 }
 
 func Puzzle2() int {
@@ -28,8 +27,18 @@ func Puzzle2() int {
 
 // ========== PRIVATE FNS =================================
 
-func data() []string {
+func data() Maze {
 	lines := reader.Lines("./data/day20/input.txt")
+	points := make(map[string]Point)
 
-	return lines
+	for y, line := range lines {
+		for x, col := range line {
+			if string(col) != "#" {
+				p := Point{x: x, y: y, value: string(col)}
+				points[p.Id()] = p
+			}
+		}
+	}
+
+	return Maze{points: points}
 }
