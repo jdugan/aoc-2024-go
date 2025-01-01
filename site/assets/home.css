@@ -1,33 +1,153 @@
-.calendar .calendar-color-1w4 {
-    color: #0091cc;
+.calendar .calendar-color-3g {
+    color: #00cc00;
 }
-.calendar .calendar-color-2w {
-    color: #ffffff;
+.calendar .calendar-color-2s {
+    color: #d0b376;
 }
-.calendar .calendar-color-w {
-    color: #ccc;
+.calendar .calendar-color-6d {
+    color: #333333;
+}
+.calendar i {
+    font-style: normal;
+    display: inline-block;
+    width: 0.6em;
+    line-height: 0.6em;
+}
+.calendar-anim7 {
+    animation-name: anim-7;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+.calendar-color-7y .calendar-anim7 {
+    animation-name: anim-7-star;
+}
+@keyframes anim-7 {
+    0% {
+        opacity: 0.2;
+        filter: grayscale(100%) brightness(100%);
+    }
+    10% {
+        opacity: 1;
+        filter: grayscale(100%) brightness(1000%);
+    }
+    100% {
+        opacity: 1;
+        filter: grayscale(0%) brightness(100%);
+    }
+}
+@keyframes anim-7-star {
+    0% {
+        opacity: 0.2;
+        filter: grayscale(100%) brightness(100%);
+        text-shadow:
+            0 0 0px #ffff66,
+            0 0 0px #ffff66,
+            0 0 0px #ffff66,
+            0 0 0px #ffff66;
+    }
+    10% {
+        opacity: 1;
+        filter: grayscale(100%) brightness(1000%);
+        text-shadow:
+            0 0 5px #ffff66,
+            0 0 10px #ffff66,
+            0 0 50px #ffff66,
+            0 0 100px #ffff66;
+    }
+    100% {
+        opacity: 1;
+        filter: grayscale(0%) brightness(100%);
+        text-shadow:
+            0 0 5px #ffff66,
+            0 0 0px #ffff66,
+            0 0 0px #ffff66,
+            0 0 0px #ffff66;
+    }
+}
+
+.calendar .calendar-color-3i {
+    color: #a25151;
 }
 .calendar .calendar-color-8d {
     color: #880000;
 }
+.calendar .calendar-color-1g {
+    color: #a47a4d;
+}
+.calendar .calendar-color-3n {
+    color: #9b715b;
+}
+.calendar .calendar-color-5r {
+    color: #ff0000;
+    text-shadow: 0 0 5px #ff0000;
+}
+.calendar .calendar-color-3m {
+    color: #d4dde4;
+}
+.calendar .calendar-color-0b {
+    color: #333399;
+}
 .calendar .calendar-color-3b {
     color: #5555bb;
 }
-.calendar .calendar-color-9s {
-    color: #333;
-}
-.calendar .calendar-color-5g {
+.calendar .calendar-color-6g {
     color: #009900;
+    text-shadow: 0 0 5px #009900;
 }
-.calendar .calendar-color-6n {
-    color: #553322;
-    text-shadow: 0 0 5px #553322;
+.calendar .calendar-color-9p {
+    color: #333333;
+    position: relative;
 }
-.calendar .calendar-color-3y {
-    color: #ffff66;
+.calendar .calendar-color-9p::after {
+    content: ".";
+    position: absolute;
+    left: 0;
     text-shadow:
-        0 0 5px #ffff66,
-        0 0 10px #ffff66;
+        0 0 3px #cdc1b2,
+        0 0 5px #cdc1b2,
+        0 0 10px #cdc1b2,
+        0 0 15px #cdc1b2;
+    color: #cdc1b2;
+}
+.calendar .calendar-color-3s {
+    color: #e3b585;
+}
+.calendar .calendar-color-0l {
+    color: #ccccff;
+}
+.calendar .calendar-color-6u {
+    color: #0066ff;
+    text-shadow: 0 0 5px #0066ff;
+}
+.calendar .calendar-color-6t {
+    color: #aaaaaa;
+}
+.calendar .calendar-color-2a {
+    color: #aaaaaa;
+}
+.calendar .calendar-color-1w1 {
+    color: #00c8ff;
+}
+.calendar .calendar-color-8k {
+    color: #cccccc;
+}
+.calendar .calendar-color-w {
+    color: #ccc;
+}
+.calendar .calendar-color-9u {
+    text-shadow:
+        0 0 3px #bee4e7,
+        0 0 5px #bee4e7,
+        0 0 10px #bee4e7,
+        0 0 15px #bee4e7;
+    color: #bee4e7;
+}
+.calendar .calendar-color-5u {
+    color: #0066ff;
+    text-shadow: 0 0 5px #0066ff;
+}
+.calendar .calendar-color-2g1 {
+    color: #4d8b03;
 }
 .calendar .calendar-color-3v {
     color: #df2308;
@@ -35,47 +155,81 @@
         0 0 5px #df2308,
         0 0 10px #df2308;
 }
-.calendar .calendar-color-1w2 {
-    color: #00b5ed;
+.calendar .calendar-color-3l {
+    color: #ccccff;
 }
-.calendar .calendar-color-2u {
-    color: #5eabb4;
+.calendar .calendar-color-0p {
+    color: #9900ff;
 }
-.calendar .calendar-color-0b {
-    color: #333399;
-}
-.calendar .calendar-color-5u {
-    color: #0066ff;
-    text-shadow: 0 0 5px #0066ff;
-}
-.calendar .calendar-color-1o {
-    color: #c74c30;
-}
-.calendar .calendar-color-3m {
-    color: #d4dde4;
-}
-.calendar .calendar-color-9n {
-    text-shadow:
-        0 0 3px #456efe,
-        0 0 5px #456efe,
-        0 0 10px #456efe,
-        0 0 15px #456efe;
-    color: #456efe;
-}
-.calendar .calendar-color-2g1 {
-    color: #4d8b03;
-}
-.calendar .calendar-color-8k {
+.calendar .calendar-color-8e {
     color: #cccccc;
 }
-.calendar .calendar-color-1w1 {
-    color: #00c8ff;
+.calendar .calendar-color-6r {
+    color: #ff0000;
+    text-shadow: 0 0 5px #ff0000;
 }
-.calendar .calendar-color-8b {
-    color: #0066ff;
+.calendar .calendar-color-1r {
+    color: #ff0000;
+}
+.calendar .calendar-color-8n {
+    color: #886655;
+}
+.calendar .calendar-color-3w {
+    color: #ffffff;
 }
 .calendar .calendar-color-8r {
     color: #ff0000;
+}
+.calendar .calendar-color-6b {
+    color: #009900;
+}
+.calendar .calendar-color-1w3 {
+    color: #00a2db;
+}
+.calendar .calendar-color-2g2 {
+    color: #7fbd39;
+}
+.calendar .calendar-color-3y {
+    color: #ffff66;
+    text-shadow:
+        0 0 5px #ffff66,
+        0 0 10px #ffff66;
+}
+.calendar .calendar-color-2g0 {
+    color: #488813;
+}
+.calendar .calendar-color-0w {
+    color: #ffffff;
+}
+.calendar .calendar-color-5o {
+    color: #ff9900;
+    text-shadow: 0 0 5px #ff9900;
+}
+.calendar .calendar-color-2w {
+    color: #ffffff;
+}
+.calendar .calendar-color-5g {
+    color: #009900;
+}
+.calendar .calendar-color-9s {
+    color: #333;
+}
+.calendar .calendar-color-3a {
+    color: #a5a8af;
+}
+.calendar .calendar-color-6y {
+    color: #ffff66;
+    text-shadow: 0 0 5px #ffff66;
+}
+.calendar .calendar-color-8y {
+    color: #ffff66;
+    text-shadow:
+        0 0 5px #ffff66,
+        0 0 10px #ffff66,
+        0 0 15px #ffff66;
+}
+.calendar .calendar-color-2g4 {
+    color: #01461f;
 }
 .calendar .calendar-color-9c {
     text-shadow:
@@ -86,45 +240,16 @@
     color: #ffffff;
     position: relative;
 }
-.calendar .calendar-color-2a {
-    color: #aaaaaa;
-}
-.calendar .calendar-color-3g {
-    color: #00cc00;
-}
-.calendar .calendar-color-0l {
-    color: #ccccff;
-}
-.calendar .calendar-color-2l {
-    color: #e6410b;
-}
-.calendar .calendar-color-3l {
-    color: #ccccff;
-}
-.calendar i {
-    font-style: normal;
-    display: inline-block;
-    width: 0.6em;
-    line-height: 0.6em;
-}
-.calendar .calendar-color-8e {
-    color: #cccccc;
-}
-.calendar .calendar-color-6b {
-    color: #009900;
-}
-.calendar .calendar-color-8n {
-    color: #886655;
-}
-.calendar .calendar-color-1r {
-    color: #ff0000;
-}
 .calendar .calendar-color-6o {
     color: #ff9900;
     text-shadow: 0 0 5px #ff9900;
 }
-.calendar .calendar-color-0w {
-    color: #ffffff;
+.calendar .calendar-color-8w {
+    color: #cccccc;
+}
+.calendar .calendar-color-6n {
+    color: #553322;
+    text-shadow: 0 0 5px #553322;
 }
 .calendar .calendar-color-8i {
     color: #ff0000;
@@ -133,11 +258,26 @@
         0 0 10px #ff0000,
         0 0 15px #ff0000;
 }
-.calendar .calendar-color-6d {
-    color: #333333;
+.calendar .calendar-color-2l {
+    color: #e6410b;
 }
-.calendar .calendar-color-1w3 {
-    color: #00a2db;
+.calendar .calendar-color-2u {
+    color: #5eabb4;
+}
+.calendar .calendar-color-1o {
+    color: #c74c30;
+}
+.calendar .calendar-color-2g3 {
+    color: #427322;
+}
+.calendar .calendar-color-8b {
+    color: #0066ff;
+}
+.calendar .calendar-color-1s {
+    color: #ffffff;
+}
+.calendar .calendar-color-1w2 {
+    color: #00b5ed;
 }
 .calendar .calendar-color-0r {
     color: #ff0000;
@@ -155,101 +295,355 @@
         0 0 10px #ffff66,
         0 0 5px #ffff66;
 }
-.calendar .calendar-color-8y {
-    color: #ffff66;
+.calendar .calendar-color-9n {
     text-shadow:
-        0 0 5px #ffff66,
-        0 0 10px #ffff66,
-        0 0 15px #ffff66;
-}
-.calendar .calendar-color-3i {
-    color: #a25151;
-}
-.calendar .calendar-color-5y {
-    color: #ffff66;
-    text-shadow: 0 0 5px #ffff66;
-}
-.calendar .calendar-color-6u {
-    color: #0066ff;
-    text-shadow: 0 0 5px #0066ff;
-}
-.calendar .calendar-color-3s {
-    color: #e3b585;
-}
-.calendar .calendar-color-9p {
-    color: #333333;
-    position: relative;
-}
-.calendar .calendar-color-9p::after {
-    content: ".";
-    position: absolute;
-    left: 0;
-    text-shadow:
-        0 0 3px #cdc1b2,
-        0 0 5px #cdc1b2,
-        0 0 10px #cdc1b2,
-        0 0 15px #cdc1b2;
-    color: #cdc1b2;
-}
-.calendar .calendar-color-6g {
-    color: #009900;
-    text-shadow: 0 0 5px #009900;
-}
-.calendar .calendar-color-3a {
-    color: #a5a8af;
-}
-.calendar .calendar-color-3w {
-    color: #ffffff;
-}
-.calendar .calendar-color-2g2 {
-    color: #7fbd39;
-}
-.calendar .calendar-color-0p {
-    color: #9900ff;
+        0 0 3px #456efe,
+        0 0 5px #456efe,
+        0 0 10px #456efe,
+        0 0 15px #456efe;
+    color: #456efe;
 }
 .calendar .calendar-color-7y {
     color: #ffff66;
     text-shadow: 0 0 5px #ffff66;
 }
-.calendar .calendar-color-6r {
-    color: #ff0000;
-    text-shadow: 0 0 5px #ff0000;
-}
-.calendar .calendar-color-8w {
-    color: #cccccc;
-}
-.calendar .calendar-color-2g0 {
-    color: #488813;
-}
-.calendar .calendar-color-9u {
-    text-shadow:
-        0 0 3px #bee4e7,
-        0 0 5px #bee4e7,
-        0 0 10px #bee4e7,
-        0 0 15px #bee4e7;
-    color: #bee4e7;
-}
-.calendar .calendar-color-6y {
+.calendar .calendar-color-5y {
     color: #ffff66;
     text-shadow: 0 0 5px #ffff66;
 }
-.calendar .calendar-color-1s {
-    color: #ffffff;
+@keyframes anim-8-blink {
+    0.00% {
+        opacity: 1;
+    }
+    96.00% {
+        opacity: 1;
+    }
+    96.01% {
+        opacity: 0.3;
+    }
+    97.33% {
+        opacity: 0.3;
+    }
+    97.34% {
+        opacity: 1;
+    }
+    98.66% {
+        opacity: 1;
+    }
+    98.67% {
+        opacity: 0.3;
+    }
+    99.99% {
+        opacity: 0.3;
+    }
+    100.00% {
+        opacity: 1;
+    }
 }
-.calendar .calendar-color-1g {
-    color: #a47a4d;
+@keyframes anim-8-spin {
+    100% {
+        transform: rotate(360deg);
+    }
 }
-.calendar .calendar-color-5r {
+@keyframes anim-8-smoke {
+    0% {
+        transform: translate(1px, 0px);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translate(0px, 1px);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-1px, 0px);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(0px, -1px);
+        opacity: 0.2;
+    }
+    100% {
+        transform: translate(1px, 0px);
+        opacity: 0.6;
+    }
+}
+.calendar .calendar-color-8e {
+    animation: anim-8-blink 15s linear infinite;
+    animation-delay: -12s;
+}
+.calendar .calendar-color-8y {
+    display: inline-block;
+    animation: anim-8-spin 10s linear infinite;
+}
+.calendar .calendar-anim8-smoke {
+    display: inline-block;
+    animation: anim-8-smoke 2s linear infinite;
+}
+@keyframes anim-9-path {
+    0.00% {
+        transform: translate(-6ch, 200%);
+        opacity: 0;
+    }
+    16.67% {
+        transform: translate(0ch, 0%);
+        opacity: 1;
+    }
+    33.33% {
+        transform: translate(3ch, -200%);
+        opacity: 1;
+    }
+    50.00% {
+        transform: translate(2ch, -400%);
+        opacity: 1;
+    }
+    66.67% {
+        transform: translate(-1ch, -600%);
+        opacity: 1;
+    }
+    83.33% {
+        transform: translate(8ch, -800%);
+        opacity: 0;
+    }
+    100.00% {
+        transform: translate(8ch, -800%);
+        opacity: 0;
+    }
+}
+.calendar .calendar-color-9u {
+    position: relative;
+}
+.calendar .calendar-9-path {
+    position: absolute;
+    color: #fff;
+    text-shadow:
+        0 0 3px #fff,
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 15px #fff;
+    position: absolute;
+    animation: anim-9-path 5s ease-in-out infinite;
+}
+@keyframes anim-0-seamonster {
+    0% {
+        transform: translate(-0.4ch, 0);
+    }
+    50% {
+        transform: translate(0.4ch, 0);
+    }
+    100% {
+        transform: translate(-0.4ch, 0);
+    }
+}
+.calendar-color-0p {
+    animation: anim-0-seamonster 7s ease-in-out infinite;
+    display: inline-block;
+}
+@keyframes anim-1-crab {
+    0% {
+        transform: translate(-0.2em, 0);
+    }
+    50% {
+        transform: translate(0.2em, 0);
+    }
+    100% {
+        transform: translate(-0.2em, 0);
+    }
+}
+.calendar .calendar-color-1c1 {
+    display: inline-block;
+    animation: anim-1-crab 5s ease-in-out infinite;
     color: #ff0000;
-    text-shadow: 0 0 5px #ff0000;
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 5px #ff0000,
+        0 0 5px #ff0000,
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 10px #ff0000,
+        0 0 10px #ff0000;
 }
-.calendar .calendar-color-6t {
-    color: #aaaaaa;
-}
-.calendar .calendar-color-5o {
+.calendar .calendar-color-1c2 {
+    display: inline-block;
+    animation: anim-1-crab 5s ease-in-out infinite;
     color: #ff9900;
-    text-shadow: 0 0 5px #ff9900;
+    text-shadow:
+        0 0 5px #ff9900,
+        0 0 5px #ff9900,
+        0 0 5px #ff9900,
+        0 0 5px #ff9900,
+        0 0 10px #ff9900,
+        0 0 10px #ff9900,
+        0 0 10px #ff9900;
 }
-.calendar .calendar-color-2g3 {
-    color: #427322;
+.calendar .calendar-color-1c3 {
+    display: inline-block;
+    animation: anim-1-crab 5s ease-in-out infinite;
+    color: #009933;
+    text-shadow:
+        0 0 5px #009933,
+        0 0 5px #009933,
+        0 0 5px #009933,
+        0 0 5px #009933,
+        0 0 10px #009933,
+        0 0 10px #009933,
+        0 0 10px #009933;
+}
+.calendar .calendar-color-1c4 {
+    display: inline-block;
+    animation: anim-1-crab 5s ease-in-out infinite;
+    color: #0066ff;
+    text-shadow:
+        0 0 5px #0066ff,
+        0 0 5px #0066ff,
+        0 0 5px #0066ff,
+        0 0 5px #0066ff,
+        0 0 10px #0066ff,
+        0 0 10px #0066ff,
+        0 0 10px #0066ff;
+}
+.calendar .calendar-color-1c5 {
+    display: inline-block;
+    animation: anim-1-crab 5s ease-in-out infinite;
+    color: #ff00ff;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 5px #ff00ff,
+        0 0 5px #ff00ff,
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff,
+        0 0 10px #ff00ff,
+        0 0 10px #ff00ff;
+}
+@keyframes anim-2-balloon {
+    0% {
+        transform: translateX(0.5ch) translateY(0.5em);
+    }
+    50% {
+        transform: translateX(0.5ch) translateY(-0.5em);
+    }
+    100% {
+        transform: translateX(0.5ch) translateY(0.5em);
+    }
+}
+.calendar-2-balloon {
+    position: absolute;
+    display: inline-block;
+    animation: anim-2-balloon ease-in-out 10s infinite;
+}
+.calendar-2-balloon::before {
+    content: "o";
+    display: inline-block;
+    transform: scale(1.2);
+}
+.calendar-2-balloon::after {
+    content: "\\/";
+    display: inline-block;
+    font-weight: bold;
+    transform: translate(-75%, 30%) scale(0.5);
+}
+.calendar .calendar-3-snowfall {
+    position: relative;
+}
+.calendar .calendar-3-snowfall > span {
+    position: absolute;
+    animation: anim-3-snowfall 10s linear infinite;
+    display: inline-block;
+    color: #ffffff;
+    pointer-events: none;
+}
+@keyframes anim-3-snowfall {
+    0% {
+        transform: translate(0, 0) rotate(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(1ch, 6ch) rotate(0.5turn);
+        opacity: 0;
+    }
+}
+@keyframes anim-4-horiz {
+    0% {
+        left: 0ch;
+    }
+    25% {
+        left: -3ch;
+    }
+    75% {
+        left: 4ch;
+    }
+    100% {
+        left: 0ch;
+    }
+}
+@keyframes anim-4-vert {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -20em;
+    }
+    100% {
+        top: -20em;
+    }
+}
+@keyframes anim-4-burst {
+    0% {
+        color: #fff;
+        filter: hue-rotate(0deg);
+        opacity: 0;
+        transform: translateX(0ch) translateY(-0.5ch);
+    }
+    49% {
+        color: #fff;
+        filter: hue-rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        color: #f00;
+        filter: hue-rotate(0deg);
+        opacity: 1;
+        transform: translateX(0ch) translateY(-0.5ch);
+    }
+    60% {
+        color: #f99;
+        filter: hue-rotate(60deg);
+    }
+    70% {
+        color: #f99;
+        filter: hue-rotate(120deg);
+    }
+    80% {
+        color: #f99;
+        filter: hue-rotate(180deg);
+    }
+    90% {
+        color: #f99;
+        filter: hue-rotate(240deg);
+        opacity: 1;
+    }
+    100% {
+        color: #f99;
+        filter: hue-rotate(300deg);
+        opacity: 0;
+        transform: translateX(5ch) translateY(-0.5ch);
+    }
+}
+.calendar .calendar-4-launcher {
+    position: relative;
+    animation: anim-4-horiz 31s ease-in-out infinite;
+}
+.calendar .calendar-4-firework {
+    position: absolute;
+    animation: anim-4-vert 5s ease-out infinite;
+}
+.calendar .calendar-4-firework > span {
+    position: absolute;
+    display: inline-block;
+}
+.calendar .calendar-4-firework > span > span {
+    animation: anim-4-burst 5s ease-out infinite;
+    display: inline-block;
 }
