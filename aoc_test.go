@@ -153,7 +153,7 @@ func Test(t *testing.T) {
 		})
 		g.It("Should get correct answers for Day 24", func(done Done) {
 			g.Assert(day24.Puzzle1()).Equal(65635066541798)
-			g.Assert(day24.Puzzle2()).Equal(-2)
+			g.Assert(day24.Puzzle2()).Equal("dgr,dtv,fgc,mtj,vvm,z12,z29,z37")
 			done()
 		})
 		g.It("Should get correct answers for Day 25", func(done Done) {

@@ -1,5 +1,12 @@
 package day24
 
+import (
+	"fmt"
+	"slices"
+
+	"github.com/elliotchance/pie/v2"
+)
+
 // ========== DEFINITION ==================================
 
 type Gate struct {
@@ -32,4 +39,12 @@ func (g Gate) Evaluate(wires map[string]int) (string, int) {
 	return id, val
 }
 
-// ---------- UTILITIES -----------------------------------
+func (g Gate) Print() {
+	prefix := "   "
+	if len(g.inputs) > 0 {
+		if slices.Contains([]string{"x", "y"}, string(g.inputs[0][0])) {
+			prefix = " "
+		}
+	}
+	fmt.Println(prefix, pie.First(g.inputs), g.condition, pie.Last(g.inputs), "->", g.output)
+}

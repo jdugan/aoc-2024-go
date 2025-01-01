@@ -4,6 +4,7 @@ import (
 	"aoc/2024/pkg/reader"
 	"fmt"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -20,19 +21,25 @@ func Both() {
 
 func Puzzle1() int {
 	device := data()
-	device.CompleteCircuit()
 	return device.Checksum()
 }
 
-func Puzzle2() int {
-	return -2
+func Puzzle2() string {
+	device := data()
+	device = device.SwapOutputs("fgc", "z12")
+	device = device.SwapOutputs("mtj", "z29")
+	device = device.SwapOutputs("dgr", "vvm")
+	device = device.SwapOutputs("dtv", "z37")
+	wires := []string{"fgc", "z12", "mtj", "z29", "dgr", "vvm", "dtv", "z37"}
+	sort.Strings(wires)
+	return strings.Join(wires, ",")
 }
 
 // ========== PRIVATE FNS =================================
 
 func data() Device {
 	wires := make(map[string]int)
-	gates := make([]Gate, 0)
+	gates := make(map[string]Gate)
 
 	lines := reader.Lines("./data/day24/input.txt")
 	for _, line := range lines {
@@ -46,7 +53,7 @@ func data() Device {
 			re := regexp.MustCompile("^(\\S+) (\\S+) (\\S+) -> (\\S+)$")
 			m := re.FindAllStringSubmatch(line, 1)[0]
 			gate := Gate{inputs: []string{m[1], m[3]}, condition: m[2], output: m[4]}
-			gates = append(gates, gate)
+			gates[gate.output] = gate
 		}
 	}
 
